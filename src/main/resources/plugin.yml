@@ -1,0 +1,7 @@
+name: mcqlink
+version: '1.0-SNAPSHOT'
+main: cn.meowyun.mcqlink.Mcqlink
+api-version: '1.21'
+authors: [ WhiteCloudOL ]
+description: Link the Minecraft Server to QQ
+website: meowyun.cn

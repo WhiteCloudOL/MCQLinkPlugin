@@ -1,0 +1,14 @@
+# WebSocket 服务器配置
+server-ip: "127.0.0.1"
+server-port: 6215
+token: "mcqlink"
+
+# 消息同步配置
+player_join_message: true
+sync_message: true
+
+# WebSocket 连接配置
+reconnect-interval: 5
+connection-timeout: 30
+
+message:

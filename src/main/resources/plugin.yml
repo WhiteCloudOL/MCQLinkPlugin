@@ -1,7 +1,28 @@
 name: mcqlink
-version: '1.0-SNAPSHOT'
+version: '1.0.0-SNAPSHOT'
 main: cn.meowyun.mcqlink.Mcqlink
 api-version: '1.21'
+load: POSTWORLD
+prefix: MCQLink
 authors: [ WhiteCloudOL ]
 description: Link the Minecraft Server to QQ
 website: meowyun.cn
+softdepend: ["PlaceholderAPI"]
+commands:
+  mcqlink:
+    description: "MCQLINK管理命令"
+    permission: mcqlink.admin
+    permission-message: 你没有权限使用此命令
+    usage: "Usage: /<command> [help|message]"
+    default: op
+  bindqq:
+    description: "MCQLINK绑定QQ命令"
+    permission: mcqlink.bindqq
+    permission-message: 你没有权限使用此命令
+    usage: "Usage: /<command> help|QQ"
+    default: true
+  permissions:
+    mcqlink.admin:
+      description: Allows you to use the command /mcqlink
+    mcqlink.bindqq:
+      description: Allow to bind qq.

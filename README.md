@@ -1,4 +1,7 @@
 # MCQLinkPlugin
+> AstrBotQQ端插件：https://github.com/WhiteCloudOL/astrbot_plugin_mcqlink  
+> Minecraft Bukkit/Spigot/Paper插件：https://github.com/WhiteCloudOL/MCQLinkPlugin  
+
 
 ## 它能做什么？
 1. 建立websocket客户端连接  

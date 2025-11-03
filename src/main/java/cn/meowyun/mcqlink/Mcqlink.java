@@ -35,7 +35,7 @@ public final class Mcqlink extends JavaPlugin {
     }
 
     public void commandRegister(){
-        getCommand("mcqlink").setExecutor(new AdminCommand(this));  // 现在可以正确传递 plugin 实例
+        getCommand("mcqlink").setExecutor(new AdminCommand(this));
     }
 
     public void eventListenerUnregister() {

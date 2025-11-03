@@ -19,12 +19,10 @@ public class PlayerMessageListener implements Listener {
         this.plugin = plugin;
         this.config = plugin.config;
 
-        // 安全地获取配置值，提供默认值
         String serverIp = config != null ? config.getString("server-ip", "127.0.0.1") : "127.0.0.1";
         int serverPort = config != null ? config.getInt("server-port", 6215) : 6215;
         String token = config != null ? config.getString("token", "") : "";
 
-        // 记录连接信息
         plugin.getLogger().info("正在初始化 WebSocket 连接: " + serverIp + ":" + serverPort);
 
         this.socks = new Socks(plugin, serverIp, serverPort, token);

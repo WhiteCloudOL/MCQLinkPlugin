@@ -24,7 +24,6 @@ public class Socks {
         this.logger = plugin.getLogger();
         this.token = token;
 
-        // 构建 WebSocket URL
         this.serverUrl = "ws://" + serverIp + ":" + serverPort;
 
         initializeWebSocket();
@@ -36,7 +35,6 @@ public class Socks {
             this.client = new Client(serverUri, plugin);
             logger.info("正在连接至 WebSocket 服务器: " + serverUrl);
 
-            // 在新线程中连接，避免阻塞主线程
             new Thread(() -> {
                 try {
                     client.connect();
@@ -67,7 +65,7 @@ public class Socks {
             message.put("content", content);
             message.put("timestamp", System.currentTimeMillis());
 
-            client.send(mapper.writeValueAsString(message));  // 现在可以访问 mapper
+            client.send(mapper.writeValueAsString(message));
         } catch (Exception e) {
             logger.warning("发送消息失败: " + e.getMessage());
         }
@@ -83,7 +81,7 @@ public class Socks {
             chatMessage.put("content", message);
             chatMessage.put("timestamp", System.currentTimeMillis());
 
-            client.send(mapper.writeValueAsString(chatMessage));  // 现在可以访问 mapper
+            client.send(mapper.writeValueAsString(chatMessage));
         } catch (Exception e) {
             logger.warning("发送聊天消息失败: " + e.getMessage());
         }
@@ -98,7 +96,7 @@ public class Socks {
             joinMessage.put("player", playerName);
             joinMessage.put("timestamp", System.currentTimeMillis());
 
-            client.send(mapper.writeValueAsString(joinMessage));  // 现在可以访问 mapper
+            client.send(mapper.writeValueAsString(joinMessage));
         } catch (Exception e) {
             logger.warning("发送玩家加入消息失败: " + e.getMessage());
         }
@@ -113,7 +111,7 @@ public class Socks {
             quitMessage.put("player", playerName);
             quitMessage.put("timestamp", System.currentTimeMillis());
 
-            client.send(mapper.writeValueAsString(quitMessage));  // 现在可以访问 mapper
+            client.send(mapper.writeValueAsString(quitMessage));
         } catch (Exception e) {
             logger.warning("发送玩家退出消息失败: " + e.getMessage());
         }
@@ -125,7 +123,6 @@ public class Socks {
         }
     }
 
-    // 内部 Client 类
     class Client extends WebSocketClient {
         private boolean authenticated = false;
         private JavaPlugin plugin;
@@ -139,14 +136,13 @@ public class Socks {
         public void onOpen(ServerHandshake handshake) {
             logger.info("已连接到 WebSocket 服务器");
 
-            // 发送认证消息
             Map<String, Object> auth = new HashMap<>();
             auth.put("type", "auth");
             auth.put("token", token);
             auth.put("client_type", "minecraft");
 
             try {
-                send(mapper.writeValueAsString(auth));  // 现在可以访问 mapper
+                send(mapper.writeValueAsString(auth));
                 logger.info("认证消息已发送");
             } catch (Exception e) {
                 logger.warning("发送认证消息失败: " + e.getMessage());
@@ -156,7 +152,7 @@ public class Socks {
         @Override
         public void onMessage(String message) {
             try {
-                Map<String, Object> data = mapper.readValue(message, Map.class);  // 现在可以访问 mapper
+                Map<String, Object> data = mapper.readValue(message, Map.class);
                 String type = (String) data.get("type");
 
                 if ("auth_response".equals(type)) {
